@@ -7,7 +7,8 @@ This project is me learning while doing.
 
 activate the env
 ```sh
-source apis/bin/activate
+source apis/apis/bin/activate
+pip install requirements.txt
 ```
 | Script                    | Description                                                      |
 |---------------------------|------------------------------------------------------------------|
