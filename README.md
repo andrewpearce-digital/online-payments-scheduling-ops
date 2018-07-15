@@ -5,7 +5,7 @@ This is not intended to be used by anyone else at this time.
 
 This project is me learning while doing.
 
-activate the end
+activate the env
 ```sh
 source apis/bin/activate
 ```
