@@ -12,28 +12,27 @@ def lambda_handler(event, context):
         # Feedback
         print("looking up transaction id " + transaction_id)
 
-#TODO construct a subset of transaction_info as json to return
         transaction_info = get_transaction_info(transaction_id)
         if transaction_info is not None:
-            # for results in transaction_info['results']:
-            #     description = results['description']
-            #     full_transaction_id = results['reference']
-            #     amount_paid = results['amount']
-            #     created_date = results['created_date']
-            #     status = results['state']['status']
-            #     refunded = results['refund_summary']['amount_available'] - amount_paid
-            #     results_data = {
-            #         "description":description
-            #         "full_transaction_id":full_transaction_id
-            #         "amount_paid":amount_paid
-            #         "created_date":created_date
-            #         "status":status
-            #         "refunded":refunded
-            #     }
-            #     results_data_json = json.dumps(results_data)
-            #     print(results_data_json)
-            # return results_data_json
-            return transaction_info
+            for results in transaction_info['results']:
+                description = results['description']
+                full_transaction_id = results['reference']
+                amount_paid = results['amount']
+                created_date = results['created_date']
+                status = results['state']['status']
+                refunded = results['refund_summary']['amount_available'] - amount_paid
+                results_data = {
+                    "description":description,
+                    "full_transaction_id":full_transaction_id,
+                    "amount_paid":amount_paid,
+                    "created_date":created_date,
+                    "status":status,
+                    "refunded":refunded
+                }
+                results_data_json = json.dumps(results_data)
+                print(results_data_json)
+            return results_data_json
+            # return transaction_info
         else:
             print("request failed - no results retrieved")
     else:
