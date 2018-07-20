@@ -6,7 +6,7 @@ import requests
 
 def lambda_handler(event, context):
 #TODO pass in value from api
-    transaction_id = "12345"
+    transaction_id = event['lpa_id']
     # make sure transaction_id value exists
     if transaction_id is not None:
         # Feedback
@@ -39,11 +39,9 @@ def lambda_handler(event, context):
         print("request failed - no transaction id provided")
     return None
 
-#TODO Provide the API key securely
-#WARNING The key file is no longer being closed
-# Read API key from file (excluded from repo)
+# Read API key from env variable
 with open(".key", "r") as key_file:
-    api_token  = key_file.read()
+    api_token  = os.environ['API_TOKEN']
 
 api_url_base = 'https://publicapi.payments.service.gov.uk/'
 
