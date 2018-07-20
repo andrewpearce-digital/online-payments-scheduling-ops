@@ -3,6 +3,7 @@
 
 import json
 import requests
+import os
 
 def lambda_handler(event, context):
 #TODO pass in value from api
@@ -40,8 +41,7 @@ def lambda_handler(event, context):
     return None
 
 # Read API key from env variable
-with open(".key", "r") as key_file:
-    api_token  = os.environ['API_TOKEN']
+api_token  = os.environ['API_TOKEN']
 
 api_url_base = 'https://publicapi.payments.service.gov.uk/'
 
