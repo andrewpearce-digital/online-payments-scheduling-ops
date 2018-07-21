@@ -11,7 +11,7 @@ def lambda_handler(event, context):
     # make sure transaction_id value exists
     if transaction_id is not None:
         # Feedback
-        print("looking up transaction id " + transaction_id)
+        print("looking up transaction id ")
 
         transaction_info = get_transaction_info(transaction_id)
         if transaction_info is not None:
@@ -31,7 +31,6 @@ def lambda_handler(event, context):
                     "refunded":refunded
                 }
                 results_data_json = json.dumps(results_data)
-                print(results_data_json)
             return results_data_json
             # return transaction_info
         else:
