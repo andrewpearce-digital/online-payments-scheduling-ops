@@ -1,9 +1,3 @@
-# test values
-# 33512436750-1512039405 
-# 01/05/2018
-# index = arn:aws:dynamodb:eu-west-1:995199299616:table/ops_lambda_db/index/*
-# table = arn:aws:dynamodb:eu-west-1:995199299616:table/ops_lambda_db
-
 from __future__ import print_function # Python 2/3 compatibility
 import boto3
 import json
