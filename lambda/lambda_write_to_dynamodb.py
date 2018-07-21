@@ -4,16 +4,6 @@ import json
 import decimal
 from datetime import datetime
 
-# Helper class to convert a DynamoDB item to JSON.
-class DecimalEncoder(json.JSONEncoder):
-    def default(self, o):
-        if isinstance(o, decimal.Decimal):
-            if abs(o) % 1 > 0:
-                return float(o)
-            else:
-                return int(o)
-        return super(DecimalEncoder, self).default(o)
-
 def lambda_handler(event, context):
     transaction_id = event['full_transaction_id']
     date_of_receipt = event['date_of_receipt']
@@ -31,9 +21,7 @@ def lambda_handler(event, context):
                 'last_updated': str(datetime.now())
             }
         )
-        db_write_response = json.dumps(response, indent=4, cls=DecimalEncoder)
-        return db_write_response
+        return response
     else:
         print("request failed - no transaction id provided or no date of receipt provided")
-        db_write_response = json.dumps(response, indent=4, cls=DecimalEncoder)
-        return db_write_response
+        return None
