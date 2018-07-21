@@ -15,7 +15,6 @@ class DecimalEncoder(json.JSONEncoder):
         return super(DecimalEncoder, self).default(o)
 
 def lambda_handler(event, context):
-#TODO pass in value from api
     transaction_id = event['full_transaction_id']
     date_of_receipt = event['date_of_receipt']
 
@@ -36,5 +35,5 @@ def lambda_handler(event, context):
         return db_write_response
     else:
         print("request failed - no transaction id provided or no date of receipt provided")
-        #TODO return error codes?
-        return None
+        db_write_response = json.dumps(response, indent=4, cls=DecimalEncoder)
+        return db_write_response
